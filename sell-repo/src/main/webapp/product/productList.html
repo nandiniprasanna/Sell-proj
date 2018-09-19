@@ -1,0 +1,208 @@
+<div class="container">
+	<section style="padding: 15px 0px 5px 0px" class="row">
+		<div class="modal-body col-sm-12">
+			<div>
+				<div role="tabpanel" class="product-tab">
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active"><a id="buy-taba" role="tab" data-toggle="tab" class="upclass" data-target="#buy">BUY</a></li>
+<!--						<li role="presentation"><a id="sell-taba" href="#/productManagement/addProduct" aria-controls="sell" role="tab" data-toggle="tab" class="upclass">SELL</a></li>-->
+						<li role="presentation"><a id="sell-taba" role="tab" data-toggle="tab" class="upclass" data-target="#sell">SELL</a></li>
+						<li role="presentation"><a id="rpt-taba" role="tab" data-toggle="tab" class="upclass" data-target="#ana">Analytics Report</a></li>
+					</ul>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active text-center" id="buy">
+							<div class="theme-showcase" role="main">
+								<div class="panel-group">
+									<div class="panel panel-info">
+										<div class="panel-heading"> <span class="panel-title">Product List</span> </div>
+										<div class="panel-body">
+											<div class="well well-sm">
+												<div class="btn-group pull-left">
+													<select ng-model="selectedCat.category" class="catList">
+														<option value="{{undefined}}">All</option>
+														<option ng-repeat="field in categories" value="{{field}}">{{field}}</option>
+													</select>
+												</div>
+												<div class="btn-group"> <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"><!-- <i class="fa th-list"> --></span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th"></span>Grid</a> </div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-offset-4 col-sm-4 text-success" ng-if="successStatus">{{successStatus }}</div>
+												<div class="col-sm-offset-4 col-sm-4 text-danger" ng-if="serverError">{{serverError }}</div>
+											</div>
+											<div class="form-group">
+												<div ng-if="productlen==0">
+													<div class="panel panel-default">
+														<div class="panel-content">
+															<p class="text-warning text-center">No Products found.</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div ng-if="productlen>0">
+												<div id="products" class="row list-group">
+													<div ng-repeat="prolst in allprolst | filter:selectedCat">
+														<div class="item  col-xs-4 col-lg-4">
+															<div class="thumbnail"> <img class="group list-group-image" src="images/logo/img7.jpg" alt="" />
+																<div class="caption">
+																	<h4 class="group inner list-group-item-heading">{{prolst.name}}</h4>
+																	<p class="group inner list-group-item-text">{{prolst.description}}</p>
+																	<div class="row">
+																		<div class="col-xs-12 col-md-6">
+																			<p class="lead">${{prolst.price}}</p>
+																			<p class="lead" style="display:none;">${{prolst.category}}</p>
+																		</div>
+																		<div class="col-xs-12 col-md-6"> <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a> </div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="sell">
+							<div class="theme-showcase" role="main">
+								<div class="panel-group">
+									<div class="panel panel-info">
+										<div class="panel-heading"> <span class="panel-title">Publish your item to sell</span> </div>
+										<div class="panel-body">
+											<!-- form start-->
+											<form class="form-horizontal" name="addproductFrm">
+												<div class="form-group">
+													<div class="col-sm-offset-3 col-sm-4 text-success" ng-if="successStatus">{{successStatus }}</div>
+													<div class="col-sm-offset-3 col-sm-4 text-danger" ng-if="errorStatus">{{errorStatus }}</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-sm-3">Prodcut Name</label>
+													<div class="col-sm-4">
+														<input type="text" class="form-control" ng-model="productData.name" name="name" required>
+													</div>
+													<div class="col-sm-4 help-block">
+														<p class="text-danger" ng-show="addproductFrm.name.$error.required && addproductFrm.name.$touched">Please enter the product name</p>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-sm-3">Description</label>
+													<div class="col-sm-4">
+														<input type="text" class="form-control" ng-model="productData.description"> 
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-sm-3">Price </label>
+													<div class="col-sm-4 ">
+														<input type="text" class="form-control" ng-model="productData.price" name="price" required> </div>
+													<div class="col-sm-4 help-block">
+														<p class="text-danger" ng-show="addproductFrm.price.$error.required && addproductFrm.price.$touched">Please enter the price</p>
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="control-label col-sm-3">Select Category</label>
+													<div class="col-sm-4 ">
+														<select class="form-control" ng-model="productData.category" ng-options="x for x in categories" required>
+															<option value="">Select Category</option>
+														</select>
+													</div>
+													<div class="col-sm-4 help-block">
+														<p class="text-danger" ng-show="addproductFrm.category.$error.required && addproductFrm.category.$touched">Please select the category</p>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="col-sm-offset-3 col-sm-4">
+														<input type="button" name="submit" id="submit" value="Publish" class="btn btn-info pull-right" ng-click="AddProduct()" /> </div>
+												</div>
+											</form>
+											<!-- form end-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane" id="ana">
+							<div class="theme-showcase" role="main">
+								<div class="panel-group">
+									<div class="panel panel-info">
+										<div class="panel-heading"> <span class="panel-title">Analytical Reports</span> </div>
+										<div class="panel-body">
+											<div class="btn-group">
+												<button class="btn btn-default btn-sm" ng-click="CPULoad()"> <span class="glyphicon glyphicon-warning-sign"></span>Generate Report </button>
+											</div>
+											<div ng-show="generated" class="row panels">
+												<div class="col-sm-3 fp-left">
+													<div class="floating-panel">
+														<h3>Trends</h3>
+														<p>
+														<img src="images/defectreport.png" /></p>
+													</div>
+												</div>
+												<div class="col-sm-3 fp-mid">
+													<div class="floating-panel">
+														<h3>Hottest</h3>
+														<p><img src="images/report.png" /></p>
+													</div>
+												</div>
+												<div class="col-sm-3 fp-mid">
+													<div class="floating-panel">
+														<h3>Projections</h3>
+														<p><img src="images/report1.png"/></p>
+													</div>
+												</div>
+												<div class="col-sm-3 fp-right">
+													<div class="floating-panel">
+														<h3>Cheapest</h3>
+														<p><img src="images/report1.png"/></p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('#list').click(function (event) {
+					event.preventDefault();
+					$('#products .item').addClass('list-group-item');
+				});
+				$('#grid').click(function (event) {
+					event.preventDefault();
+					$('#products .item').removeClass('list-group-item');
+					$('#products .item').addClass('grid-group-item');
+				});
+			});
+		</script>
+		<style>
+			.catList {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				z-index: 1000;
+				float: left;
+				min-width: 160px;
+				padding: 3px 0;
+				margin: 2px 0 0;
+				font-size: 14px;
+				text-align: left;
+				list-style: none;
+				background-color: #fff;
+				-webkit-background-clip: padding-box;
+				background-clip: padding-box;
+				border: 1px solid #ccc;
+				border: 1px solid rgba(0, 0, 0, .15);
+				border-radius: 4px;
+				-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+				box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+			}
+		</style>
+	</section>
+	<!-- section end -->
+</div>

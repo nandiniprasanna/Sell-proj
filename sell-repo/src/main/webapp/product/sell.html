@@ -1,0 +1,83 @@
+<section style="padding: 15px 0px 5px 0px">
+	<div class="modal-body">
+		<div>
+			<div role="tabpanel" class="product-tab">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation"><a id="buy-taba" href="#/productManagement/productList" aria-controls="buy" role="tab" data-toggle="tab" class="upclass">BUY</a></li>
+					<li role="presentation" class="active"><a id="sell-taba" href="#/productManagement/addProduct" aria-controls="sell" role="tab" data-toggle="tab" class="upclass">SELL</a></li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active text-center" id="sell">
+						<div class="container theme-showcase" role="main">
+							<div class="row">
+								<div class="panel-group">
+									<div class="panel panel-info">
+										<div class="panel-heading"> <span class="panel-title">Add Product</span> </div>
+										<div class="panel-body">
+											<div>
+												<!-- form start-->
+												<form class="form-horizontal" name="addproductFrm">
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-4 text-success" ng-if="successStatus">{{successStatus }}</div>
+														<div class="col-sm-offset-3 col-sm-4 text-danger" ng-if="errorStatus">{{errorStatus }}</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-sm-3">Prodcut Name</label>
+														<div class="col-sm-4">
+															<input type="text" class="form-control" ng-model="productData.name" name="name" required> </div>
+														<div class="col-sm-4 help-block">
+															<p class="text-danger" ng-show="addproductFrm.name.$error.required && addproductFrm.name.$touched">Please enter the product name</p>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-sm-3">Description</label>
+														<div class="col-sm-4">
+															<input type="text" class="form-control" ng-model="productData.description"> </div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-sm-3">Price </label>
+														<div class="col-sm-4 ">
+															<input type="text" class="form-control" ng-model="productData.price" name="price" required> </div>
+														<div class="col-sm-4 help-block">
+															<p class="text-danger" ng-show="addproductFrm.price.$error.required && addproductFrm.price.$touched">Please enter the price</p>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-sm-3">Select Category</label>
+														<div class="col-sm-4 ">
+															<select class="form-control" ng-model="productData.category" ng-options="x for x in categories" required>
+																<option value="">Select Category</option>
+															</select>
+														</div>
+														<div class="col-sm-4 help-block">
+															<p class="text-danger" ng-show="addproductFrm.category.$error.required && addproductFrm.category.$touched">Please select the category</p>
+														</div>
+													</div>
+													<!-- <div class="form-group">
+                        		<label class="control-label col-sm-3">Product Image</label>
+                        		 <div class="col-sm-4">
+                                        	<input type="file" class="form-control" ng-model="productData.image">
+                              	</div>
+                        </div> -->
+													<div class="form-group">
+														<div class="col-sm-offset-3 col-sm-4">
+															<input type="button" name="submit" id="submit" value="Add" class="btn btn-info pull-right" ng-click="AddProduct()" />
+														</div>
+														<!-- <div class="col-sm-offset-3 col-sm-4" ng-if="editProid"> <input type="button" name="submit" id="submit" value="Update" class="btn btn-info pull-right"  ng-click="EditUser()"/></div> --></div>
+												</form>
+											</div>
+											<!-- form end-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- container end -->
+</section>
+<!-- section end -->

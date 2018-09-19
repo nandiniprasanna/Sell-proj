@@ -1,0 +1,81 @@
+html, body{
+	background-color: #eee;
+}
+
+.nav-header a{color:#e00505;}
+a.navbar-brand {font-size: 30px; font-weight: bold; padding-top: 15px; color: #e00505;}
+a.navbar-brand:focus, a.navbar-brand:active, a.navbar-brand:visited {color:#e00505;}
+
+.home {background: url('../images/red-umbrella.jpg'); 
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	color: white;
+	padding: 10px;
+	padding-top: 50px;
+}
+
+.login-model-header, .modelheadtitle{color: white;}
+#login_btn{background-color: #e00505; border-color: firebrick;}
+
+.forgetpass-tab, .signin-tab{
+	color: #e00505;
+}
+.panels{
+	margin-top: 20px;
+}
+.fp-left{
+	margin-left:0;
+	padding-left: 0;
+	padding-right: 10px;
+}
+
+.fp-mid{
+	margin:0;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.fp-right{
+	margin-right:0;
+	padding-right: 0;
+	padding-left: 10px;
+}
+.floating-panel {
+	background-color: white;
+	padding: 10px;
+	padding-top: 5px
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.floating-panel h3{
+	border-bottom: 1px solid #ccc;
+	padding-top:0;
+}
+
+.floating-panel p{
+	text-align: justify;
+}
+
+.floating-panel p img{
+	width: 100%;
+	height: auto;
+}
+
+/* Product list */
+
+.product-tab > ul{
+	background-image: url('../images/hdr_bg.jpg');
+	background-repeat: repeat-x;
+	background-position: top left;
+	background-size: contain;
+}
+
+.product-tab .active a{
+	border-bottom: 2px solid #ccc;
+}
+
+.panel-info > .panel-heading{
+	background-image: url('../images/bg_topbar.gif');
+	background-repeat: repeat-x;
+	background-position: top left;
+	background-size: contain;
+}
+

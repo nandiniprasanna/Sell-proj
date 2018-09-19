@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/data/mongo
+    http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<context:property-placeholder location="classpath:sellingpoint.properties" />
+
+	<mongo:mongo id="mongo" host="${mongodb.server.host}" port="${mongodb.server.port}" />
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg value="${mongodb.schema}" />
+		<property name="writeConcern">
+			<util:constant static-field="com.mongodb.WriteConcern.SAFE"></util:constant>
+		</property>
+	</bean>
+	<bean id="genericDao" class="org.unisys.sellingpoint.dao.impl.MongoDAOImpl">
+		<property name="mongoTemplate" ref="mongoTemplate" />
+	</bean>
+	<bean id="userDao" class="org.unisys.sellingpoint.dao.admin.impl.UserDaoImpl"
+		parent="genericDao">
+	</bean>
+	<bean id="notificationDao"
+		class="org.unisys.sellingpoint.dao.admin.impl.NotificationDaoImpl"
+		parent="genericDao">
+	</bean>
+	<bean id="userlogDao" class="org.unisys.sellingpoint.dao.admin.impl.UserLogDaoImpl"
+		parent="genericDao">
+	</bean>
+	<bean id="productDao" class="org.unisys.sellingpoint.dao.admin.impl.ProductDaoImpl"
+		parent="genericDao">
+	</bean>
+</beans>

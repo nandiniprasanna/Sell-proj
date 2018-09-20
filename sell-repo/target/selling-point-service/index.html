@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="selling-point">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>Selling Point</title>
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet" />
+<!-- Bootstrap theme -->
+<link href="css/bootstrap-theme.css" rel="stylesheet" />
+<link href="css/style.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="css/sticky-footer-navbar.css" rel="stylesheet" />
+<!-- Custom styles for this template -->
+<link href="css/theme.css" rel="stylesheet" />
+<link href="css/grid-view.css" rel="stylesheet" />
+<!-- Another custom css on top of others -->
+<link href="css/custom.css" rel="stylesheet" />
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="scripts/js/ie-emulation-modes-warning.js"></script>
+<script src="scripts/js/jquery.js"></script>
+<link href="css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="scripts/angular/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+<script src="scripts/angular/angular-route.js"></script>
+<script src="scripts/angular/angular-cookies.js"></script>
+<script src="scripts/angular/underscore.js"></script>
+<script src="scripts/angular/app.js"></script>
+<script src="services/configuration/configurationController.js"></script>
+<script src="services/configuration/configurationService.js"></script>
+<script src="loginService/loginController.js"></script>
+<script src="loginService/loginServices.js"></script>
+<script src="scripts/angular/checklist-model.js"></script>
+<script src="product/productController.js"></script>
+<script src="product/productService.js"></script>
+
+<style>
+.clientlist {
+	
+}
+
+.clientlist h3 {
+	color: #5a4e5b;
+}
+
+.clientlist ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.clientlist ul li {
+	margin: 0;
+	padding: 10px;
+	float: left;
+}
+
+.userMgtactive {
+	color: #555;
+	background-color: #CDE7F5 !important;
+}
+
+.loadimg {
+	position: absolute;
+	margin-top: -25%;
+	z-index: 1;
+	padding: 0px;
+}
+</style>
+
+<style>
+.tree ul {
+	list-style: none outside none;
+	margin-left: 250px;
+}
+
+.tree li a {
+	line-height: 25px;
+}
+
+.tree>ul>li>a {
+	color: #3B4C56;
+	display: block;
+	font-weight: normal;
+	position: relative;
+	text-decoration: none;
+}
+
+.tree li.parent>a {
+	padding: 0 0 0 28px;
+}
+
+.tree li.parent>a:before {
+	background-image: url("css/images/plus_minus_icons.png");
+	background-position: -22px center;
+	content: "";
+	display: block;
+	height: 21px;
+	left: 0;
+	position: absolute;
+	top: 2px;
+	vertical-align: middle;
+	width: 23px;
+}
+
+.tree ul li.active>a:before {
+	background-position: 0px center;
+}
+
+.tree ul li ul {
+	border-left: 1px solid #D9DADB;
+	display: block;
+	margin: 0 0 0 12px;
+	overflow: hidden;
+	padding: 0 0 0 25px;
+}
+
+.tree ul li ul li {
+	position: relative;
+}
+
+.tree ul li ul li:before {
+	border-bottom: 1px dashed #E2E2E3;
+	content: "";
+	left: -20px;
+	position: absolute;
+	top: 12px;
+	width: 15px;
+}
+
+.dropdown {
+	float: right;
+	color: #e00505;
+	margin-top: 19px;
+	list-style: none;
+}
+
+.caret {
+	margin-left: 10px;
+	border-right: 5px solid transparent;
+	border-left: 5px solid transparent;
+	color: #FFFFFF;
+}
+
+#displayName {
+	margin-right: 20px;
+	color: #FFFFFF;
+}
+​
+</style>
+
+<script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        $(document).ready(function() {
+        	   $(".nav li.disabled a").hover(function() {
+        	     return false;
+        	   });
+        	});
+    </script>
+</head>
+<body ng-controller="menuList as tabChge">
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<div class="nav-header">
+			<a href="index.html" class="navbar-brand mybrand">Selling Point</a>
+		</div>
+		<li ng-if="globals.currentUser" class="dropdown"><a
+			id="displayName"><td>{{globals.currentUser.firstname}}</td></a> <a
+			class="dropdown-toggle js-activated" data-toggle="dropdown"
+			aria-expanded="false"><img src="images/Login-Image.jpg" /><b
+				class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a tabindex="-1" href="#/userManagement/createUser">Manage
+						User</a></li>
+				<li><a tabindex="-1" ng-click="logout()">Logout</a></li>
+			</ul></li>
+	</div>
+	</nav>
+	<div ng-view></div>
+	<!--footer start-->
+	<div>
+		<footer class="footer footer-inverse">
+		<div class="container">
+			<div class="text-mutedpull-center"
+				style="margin: 10px 0px; text-align: center;">&copy; Copyright
+				Unisys 2016</div>
+		</div>
+
+		</footer>
+	</div>
+	<!--footer end-->
+
+	<script src="scripts/js/bootstrap-datepicker.js"></script>
+	<script src="scripts/js/bootstrap.min.js"></script>
+	<script src="scripts/js/docs.min.js"></script>
+	<script src="scripts/js/bootstrap-hover-dropdown.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="scripts/js/ie10-viewport-bug-workaround.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(document).on('click', '.signup-tab', function (e) {
+				e.preventDefault();
+				$('#signup-taba').tab('show');
+			});
+
+			$(document).on('click', '.signin-tab', function (e) {
+				e.preventDefault();
+				$('#signin-taba').tab('show');
+			});
+
+			$(document).on('click', '.forgetpass-tab', function (e) {
+				e.preventDefault();
+				$('#forgetpass-taba').tab('show');
+			});
+	  });		
+	</script>
+</body>
+
+</html>

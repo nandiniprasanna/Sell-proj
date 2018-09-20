@@ -1,0 +1,156 @@
+<!-- home menu start-->
+<div>
+	<script>
+		$('.carousel').carousel({
+			interval: 3000
+		})
+	</script>
+	<style>
+		.tool4list ul li {
+			padding: 10px 65px;
+		}
+		
+		.tool6list ul li {
+			padding: 10px 33px;
+		}
+		
+		.login-modal {
+			float: right;
+			border: 1px solid #eee;
+			border-radius: 10px;
+		}
+		
+		.nav-tabs {
+			display: none;
+		}
+	</style>
+	<div class="container">
+		<div class="row home" ng-controller="LoginCtrl">
+			<div class="col-sm-8 banner">
+				<h2>Welcome to Selling Point!</h2>
+				<p> Please join the hottest place to buy or sell your items. We have buyers from accross the globe looking for quality items. </p>
+				<p>Being an exclusive market, we do not show the items to anyone until you create an account here and we promise we shall keep your information a secret.</p>
+				<p>Create you account today.</p>
+				<h4>Registration is free...</h4> 
+			</div>
+			<div class="col-sm-4">
+				<div class="login-modal">
+					<div class="modal-header login-modal-header">
+						<h4 class="modelheadtitle text-center" id="loginModalLabel">Log in</h4> 
+					</div>
+					<div class="modal-body">
+						<div class="text-center">
+							<div role="tabpanel" class="login-tab">
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist" aria-hidden="true">
+									<li role="presentation" class="active">
+										<a id="signin-taba" href="#home" aria-controls="home" role="tab" data-toggle="tab" class="upclass"></a>
+									</li>
+									<!--  <li role="presentation"><a id="signup-taba" href="#profile" aria-controls="profile" role="tab" data-toggle="tab" class="upclass">Sign Up</a></li>-->
+									<li role="presentation">
+										<a id="forgetpass-taba" href="#forget_password" aria-controls="forget_password" role="tab" data-toggle="tab" class="upclass"></a>
+									</li>
+								</ul>
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active text-center" id="home"> &nbsp;&nbsp; <span id="login_fail" class="response_error" style="display: none;">Loggin failed, please try again.</span>
+										<div class="clearfix"></div>
+										<div class="text-danger" ng-show="error">{{error}}</div>
+										<form name="form" role="form">
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-user"></i></div>
+													<input type="text" class="form-control" id="login_username" ng-model="userDetails.userName" placeholder="Username" required /> </div> <span class="help-block has-error" id="email-error"></span> </div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-lock"></i></div>
+													<input type="password" class="form-control" id="password" placeholder="Password" ng-model="userDetails.password" required /> </div> <span class="help-block has-error" id="password-error"></span> </div>
+											<button type="button" id="login_btn" class="btn btn-block btn-danger" ng-disabled="form.$invalid || dataLoading" data-loading-text="Signing In...." ng-click="login()">Login</button> <img ng-if="dataLoading" src="images/loading_spinner.gif" />
+											<div class="clearfix"></div>
+											<div class="login-modal-footer">
+												<div class="row">
+													<div class="col-xs-8 col-sm-8 col-md-8"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab upclass"> Forgot password? </a> </div>
+													<!--   <div class="col-xs-4 col-sm-4 col-md-4"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab upclass"> Sign Up </a> </div>--></div>
+											</div>
+										</form>
+									</div>
+									<div role="tabpanel" class="tab-pane" id="profile"> &nbsp;&nbsp; <span id="registration_fail" class="response_error" style="display: none;">Registration failed, please try again.</span>
+										<div class="clearfix"></div>
+										<form>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-user"></i></div>
+													<input type="text" class="form-control" id="username" placeholder="Username" /> </div> <span class="help-block has-error" data-error='0' id="username-error"></span> </div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-at"></i></div>
+													<input type="text" class="form-control" id="remail" placeholder="Email" /> </div> <span class="help-block has-error" data-error='0' id="remail-error"></span> </div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-lock"></i></div>
+													<input type="password" class="form-control" id="password" placeholder="Password" /> </div> <span class="help-block has-error" id="password-error"></span> </div>
+											<button type="button" id="register_btn" class="btn btn-block btn-info" data-loading-text="Registering....">Register</button>
+											<div class="clearfix"></div>
+											<div class="login-modal-footer">
+												<div class="row">
+													<div class="col-xs-8 col-sm-8 col-md-8"> <i class="fa fa-lock"></i> <a href="javascript:;" class="forgetpass-tab upclass"> Forgot password? </a> </div>
+													<!--   <div class="col-xs-4 col-sm-4 col-md-4"> <i class="fa fa-check"></i> <a href="javascript:;" class="signin-tab upclass"> Sign In </a> </div> --></div>
+											</div>
+										</form>
+									</div>
+									<div role="tabpanel" class="tab-pane text-center" id="forget_password"> &nbsp;&nbsp; <span id="reset_fail" class="response_error" style="display: none;"></span>
+										<div class="clearfix"></div>
+										<form name='forgotFrm'>
+											<div class="text-danger" ng-show="error">{{errorStatus}}</div>
+											<div class="text-success" ng-show="successStatus">{{successStatus}}</div>
+											<div class="form-group">
+												<div class="input-group">
+													<div class="input-group-addon"><i class="fa fa-user"></i></div>
+													<input type="email" class="form-control" id="femail" placeholder="Email" name="forgotemail" ng-model="forgotemail" required ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" /> </div>
+												<p class="text-danger" ng-show="forgotFrm.forgotemail.$error.required ">Please enter the email</p>
+												<p class="text-danger" ng-show="forgotFrm.forgotemail.$error.email">Not valid email!</p> <span class="help-block has-error" data-error='0' id="femail-error"></span> </div>
+											<!-- <button type="button" id="reset_btn" class="btn btn-block btn-danger" data-loading-text="Please wait...." ng-click="forgotPass()">Forget Password</button> -->
+											<button type="button" id="reset_btn" class="btn btn-block btn-danger" ng-disabled="forgotFrm.$invalid || dataLoading" data-loading-text="Please wait...." ng-click="forgotPass()">Forget Password</button>
+											<div class="clearfix"></div>
+											<div class="login-modal-footer">
+												<div class="row">
+													<div class="col-xs-6 col-sm-6 col-md-6"> <i class="fa fa-lock"></i> <a href="javascript:;" class="signin-tab upclass"> Sign In </a> </div>
+													<!--  <div class="col-xs-6 col-sm-6 col-md-6"> <i class="fa fa-check"></i> <a href="javascript:;" class="signup-tab upclass"> Sign Up </a> </div> --></div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row panels">
+			<div class="col-sm-3 fp-left">
+				<div class="floating-panel">
+					<h3>Eager</h3>
+					<p>Eager to serve you! Serving all is our motto and we shall do everything that make you smile</p>
+				</div>
+			</div>
+			<div class="col-sm-3 fp-mid">
+				<div class="floating-panel">
+					<h3>Faster</h3>
+					<p>Faster service delivery. None can match us! Faster transactions and faster delivery.</p>
+				</div>
+			</div>
+			<div class="col-sm-3 fp-mid">
+				<div class="floating-panel">
+					<h3>Safer</h3>
+					<p>Your information, personal and financial, are safe. We do not store any of your banking information.</p>
+				</div>
+			</div>
+			<div class="col-sm-3 fp-right">
+				<div class="floating-panel">
+					<h3>Larger</h3>
+					<p>We have the largest market coverage so that you get a larger base for your buy or sell.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- home menu end-->

@@ -1,0 +1,139 @@
+<section style="padding:15px 0px 5px 0px">
+    <div class="container theme-showcase" role="main" >
+        <!-- container start-->
+
+        <div class="row">
+      
+
+            <div class="panel-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                    
+	                   <span class="panel-title" ng-if='!editUsrid'>Create User</span> 
+	                    <span class="panel-title" ng-if='editUsrid'>Update User</span> 
+	                   <div class="btn-group pull-right">
+	                    <a href="#/userManagement/userList" class="text-info"><strong>Modify/Delete</strong></a>
+	                   </div>
+	                    
+	              
+                   </div>
+                    <div class="panel-body">
+                        <div><!-- form start-->
+                        <form class="form-horizontal" name="adduserFrm">
+                        
+                            <div class="form-group">
+			                    <div class="col-sm-offset-3 col-sm-4 text-success" ng-if="successStatus">{{successStatus }}</div>
+			                     <div class="col-sm-offset-3 col-sm-4 text-danger" ng-if="errorStatus">{{errorStatus }}</div>
+                		  </div>
+                        <div class="form-group">
+                        		<label class="control-label col-sm-3">First Name</label>
+                        		 <div class="col-sm-4">
+                                  <input type="text" class="form-control" ng-model="userData.firstName" name="firstName" required>
+                               </div>
+                                 <div class="col-sm-4 help-block">
+                        			 <p class="text-danger" ng-show="adduserFrm.firstName.$error.required && adduserFrm.firstName.$touched" >Please enter the first name</p>
+                  				  </div>
+                        
+                        </div>
+                        
+                         <div class="form-group">
+                        		<label class="control-label col-sm-3">Last Name</label>
+                        		 <div class="col-sm-4">
+                                        	<input type="text" class="form-control" ng-model="userData.lastName">
+                                        
+                              	</div>
+                        
+                        </div>
+                        
+                         <div class="form-group">
+                        		<label class="control-label col-sm-3">User Name </label>
+                        		 <div class="col-sm-4" ng-if="editUsrid">
+                                  		<input type="text" class="form-control" ng-model="userData.userName" name="username"  readonly required>
+                               </div>
+                                <div class="col-sm-4" ng-if='!editUsrid'>
+                                  		<input type="text" class="form-control" ng-model="userData.userName" name="username" required>
+                               </div>
+                               <div class="col-sm-4 help-block">
+                               <p class="text-danger" ng-show="adduserFrm.username.$error.required && adduserFrm.username.$touched">Please enter the username</p>
+                               
+                               </div>
+                        
+                        </div>
+                        
+                         <div class="form-group">
+                        		<label class="control-label col-sm-3">Email ID</label>
+                        		 <div class="col-sm-4">
+                                  		<input type="email" class="form-control" ng-model="userData.email" name="email" required ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/">
+                             	  </div>
+                             	   <div class="col-sm-4 help-block">
+                               <p class="text-danger" ng-show="adduserFrm.email.$error.required && adduserFrm.email.$touched">Please enter the email</p>
+                               <p class="text-danger" ng-show="adduserFrm.email.$error.email">Not valid email!</p>
+                              			<!--   <p ng-messages="adduserFrm.email.$error">
+   										 <div ng-message="pattern">Please enter a valid email address!</div>
+ 										 </p>-->
+                               </div>
+                        
+                        </div>
+                                        
+                             <div class="form-group">
+                        		<label class="control-label col-sm-3">Contact Number </label>
+                        		 <div class="col-sm-4">
+                                		
+                                	                      		
+                                		                      		
+                                		<input type="tel" class="form-control" ng-model='userData.contact' name="contact">
+                                        
+                                        
+                                        
+                            		  </div>
+                            		  
+                            		   <div class="col-sm-4 help-block">
+                               <p class="text-danger" ng-show="adduserFrm.contact.$error.required && adduserFrm.contact.$touched">Please enter the contact number</p>
+                               
+                               </div>
+                        
+                        </div>
+                        
+                        
+             <!--          <div class="form-group">
+                        		<label class="control-label col-sm-3">System Role </label>
+                        		 <div class="col-sm-4">
+                        		 
+                        		 <label ng-repeat="role in roles"> 
+                        		     <label class="checkbox-inline" >
+                        		     
+                        		  	
+                        		    
+									  <input type="checkbox"  checklist-model="user.roles" checklist-value="role"   />{{role}}
+						  </label>
+						</label>
+					                                       
+                            		  </div>
+                            		  
+                            		   <div class="col-sm-4 help-block">
+                               <p class="text-danger" ng-show="rolemsg">{{rolemsg}}</p>
+                               
+                               </div>
+                        
+                        </div>  --> 
+                        
+                         <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-4 ">  
+                     <a href="#/productManagement/productList">
+                      <input type="button" name="submit" id="submit" value="Cancel" class=" btn btn-warning col-sm-offset-4" />
+                      </a>
+                      <label ng-if="!editUsrid"><input type="button" name="submit" id="submit" value="Create User" class="btn btn-info" ng-click="AddUser()" /></label>
+                        <label ng-if="editUsrid"><input type="button" name="submit" id="submit" value="Update" class="btn btn-info" ng-click="EditUser()" /></label>
+                      
+                    </div>
+                  </div>
+                        
+                        </form>
+                            
+                        </div><!-- form end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- container ends-->
+</section>

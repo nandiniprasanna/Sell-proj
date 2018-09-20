@@ -1,0 +1,78 @@
+<section style="padding:15px 0px 5px 0px">
+    <div class="container theme-showcase" role="main">
+
+
+
+
+<div class="row">
+<div class="panel-group">
+	 <div class="panel panel-info">
+	
+	
+	<div class="panel-heading">
+	
+	<span class="panel-title">User List</span>
+		<div class="btn-group pull-right">
+			<a href="#/userManagement/createUser"  class="text-info"><strong>Create User</strong></a>
+		
+		</div>
+	</div>
+			<div class="panel-body">
+			
+			 <div class="form-group">
+                   <div class="col-sm-offset-4 col-sm-4 text-success" ng-if="successStatus">{{successStatus }}</div>
+                    <div class="col-sm-offset-4 col-sm-4 text-danger" ng-if="serverError">{{serverError }}</div>
+              </div>
+                 <div class="form-group">
+	                  <div ng-if="userlen==0">
+	                  
+		                  	<div class="panel panel-default">
+		                  	
+		                  	<div class="panel-content"><p class="text-warning text-center">User not found. Please create new user</p></div>
+		                  	
+		                  	</div>
+	                  
+	                  </div>
+	             </div>
+               
+			
+			
+			<div ng-if="userlen>0">
+			<div class="form-group pull-right"><input type="text" class="form-control"  ng-model='searchName.userName' placeholder="search by username"></div>
+			
+			<table class="table table-bordered table-hover table-condensed table-responsible">
+			
+					<tr>
+						<th>User Name</th>
+						<th>Login Name</th>
+						<th>Email Id</th>
+						<th>Action</th>
+					</tr>
+					<tr ng-repeat="usrlst in alluserlst | filter:searchName">
+						<td>{{usrlst.firstName}}</td>
+						<td>{{usrlst.userName}}</td>
+						<td>{{usrlst.email}}</td>
+						<td><a href="#/userManagement/editUser/{{usrlst.id}}">Edit</a> / <a href="javascript:void(0)" ng-click="deleteUser(usrlst.id,$index)">Delete</a></td>  
+						
+						
+					</tr>
+					
+			
+			</table>
+		</div>	
+			  
+			
+			</div>
+	
+	
+	</div>
+
+</div>
+
+	
+
+</div>
+
+
+</div><!-- container end -->
+</section><!-- section end -->
